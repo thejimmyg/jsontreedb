@@ -1,4 +1,4 @@
 *.DS_Store
 *.sw[op]
-my-db
+db
 node_modules

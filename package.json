@@ -1,8 +1,11 @@
 {
-  "name": "ljson",
+  "name": "jsontreedb",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "ljson-run": "run.js"
+  },
   "scripts": {
     "start": "node run.js",
     "fix": "standard --fix *.js"
