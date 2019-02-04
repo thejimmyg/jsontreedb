@@ -4,8 +4,11 @@
 
 ```
 npm install
+npm test
 npm start
 ```
+
+An example is in `run.js`.
 
 ## Data Model
 

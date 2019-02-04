@@ -1,9 +1,9 @@
-const { put, patch, get, open } = require('./index.js')
+const { jsontreedb } = require('./index.js')
 const yaml = require('js-yaml')
 
 const main = async () => {
   try {
-    const db = open('./db')
+    const db = jsontreedb('./db')
     const data = {
       booking: {
         one: {
@@ -18,23 +18,23 @@ const main = async () => {
         }
       }
     }
-    await put(db, '', data)
-    console.log(await get(db, ''))
-    console.log(await get(db, 'booking'))
-    console.log(await get(db, 'booking/one'))
-    console.log(await get(db, 'booking/two'))
-    console.log(await get(db, 'booking/one/token'))
-    await put(db, 'booking/one/token', `updated
+    await db.put('', data)
+    console.log(await db.get(''))
+    console.log(await db.get('booking'))
+    console.log(await db.get('booking/one'))
+    console.log(await db.get('booking/two'))
+    console.log(await db.get('booking/one/token'))
+    await db.put('booking/one/token', `updated
 `)
-    console.log(await get(db, 'booking/one/token'))
-    console.log(yaml.safeDump(await get(db, '')))
-    // await put(db, 'booking/two/token', null)
-    await put(db, 'booking/two', null)
-    console.log(yaml.safeDump(await get(db, '')))
-    await put(db, 'booking/one', { 'notToken': 'value' })
-    console.log(yaml.safeDump(await get(db, '')))
-    await patch(db, 'booking/one', { 'token': 'tokenValue' })
-    console.log(yaml.safeDump(await get(db, '')))
+    console.log(await db.get('booking/one/token'))
+    console.log(yaml.safeDump(await db.get('')))
+    // await db.put('booking/two/token', null)
+    await db.put('booking/two', null)
+    console.log(yaml.safeDump(await db.get('')))
+    await db.put('booking/one', { 'notToken': 'value' })
+    console.log(yaml.safeDump(await db.get('')))
+    await db.patch('booking/one', { 'token': 'tokenValue' })
+    console.log(yaml.safeDump(await db.get('')))
   } catch (e) {
     console.error(e)
   }

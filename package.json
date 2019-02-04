@@ -7,6 +7,7 @@
     "ljson-run": "run.js"
   },
   "scripts": {
+    "test": "node test.js",
     "start": "node run.js",
     "fix": "standard --fix *.js"
   },

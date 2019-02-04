@@ -1,5 +1,20 @@
 const level = require('level')
-const debug = require('debug')('ljson')
+const debug = require('debug')('jsontreedb')
+
+const jsontreedb = (path) => {
+  const db = open(path)
+  return {
+    put: async (key, value) => {
+      return put(db, key, value)
+    },
+    patch: async (key, value) => {
+      return patch(db, key, value)
+    },
+    get: async (key) => {
+      return get(db, key)
+    }
+  }
+}
 
 const open = (path) => {
   return level(path)
@@ -70,6 +85,9 @@ const patch = async (db, key, value) => {
 }
 
 const get = async (db, key) => {
+  if (typeof key === 'undefined') {
+    key = ''
+  }
   if (key.endsWith('/')) {
     throw new Error('Key should not end with /')
   }
@@ -120,4 +138,4 @@ const get = async (db, key) => {
   })
 }
 
-module.exports = { patch, put, get, open }
+module.exports = { jsontreedb, patch, put, get, open }
